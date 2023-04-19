@@ -1,0 +1,7 @@
+selenium==4.1.0
+beautifulsoup4==4.10.0
+pytube
+browsermob-proxy
+selenium
+moviepy
+tqdm

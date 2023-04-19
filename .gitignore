@@ -1,0 +1,35 @@
+# custom output folder
+output
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pywz
+*.pyw
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Logs
+*.log
+logs/
+log/
+logs/*.*
+log/*.*
+
+# BrowserMob Proxy
+browsermob-proxy-*/
+
+# GeckoDriver
+geckodriver.log
+geckodriver.log.*
+
+# Other
+.DS_Store
+.idea/
+.vscode/
+*.swp

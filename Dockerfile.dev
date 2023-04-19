@@ -1,0 +1,35 @@
+# Start from the official Python image
+FROM mcr.microsoft.com/devcontainers/python:0-3.11
+
+# Install Firefox
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        firefox-esr \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* \
+        && rm -rf /var/cache/apt/archives/*
+
+# Install Chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+# Install Java 11 and ffmpeg for video recording support in Selenium
+RUN apt-get update && apt-get install -y default-jdk && apt-get install -y ffmpeg
+ENV PATH=$PATH:/usr/lib/jvm/java-11-openjdk-amd64/bin
+
+
+# Install ChromeDriver
+# RUN wget https://chromedriver.storage.googleapis.com/95.0.4638.17/chromedriver_linux64.zip && \
+#     unzip chromedriver_linux64.zip && \
+#     mv chromedriver /usr/bin/chromedriver && \
+#     chmod +x /usr/bin/chromedriver
+
+# Install geckodriver
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz \
+    && tar -xzf geckodriver-v0.30.0-linux64.tar.gz -C /usr/local/bin \
+    && rm geckodriver-v0.30.0-linux64.tar.gz
+
+# Download BrowserMob Proxy
+RUN wget https://github.com/lightbody/browsermob-proxy/releases/download/browsermob-proxy-2.1.4/browsermob-proxy-2.1.4-bin.zip && \
+    unzip browsermob-proxy-2.1.4-bin.zip && \
+    mv browsermob-proxy-2.1.4 /usr/local/bin && \
+    chmod +x /usr/local/bin/browsermob-proxy-2.1.4/bin/browsermob-proxy
